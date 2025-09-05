@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XFIVE AI - Generator Gambar AI 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-green: #39ff14;
+            --neon-purple: #bd00ff;
+            --neon-orange: #ff5e00;
+            --dark-bg: #0a0a1f;
+            --dark-card: #12122a;
+            --dark-border: #1e1e4a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0d0;
+            --card-header: rgba(0, 243, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%),
+                linear-gradient(to bottom, rgba(10, 10, 31, 0.95), rgba(15, 15, 45, 0.95));
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Memungkinkan item untuk wrap di layar kecil */
+            gap: 15px; /* Memberi jarak jika terjadi wrapping */
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            /* Menggunakan flexbox untuk alignment yang lebih baik */
+            display: flex;
+            align-items: baseline; /* Menjajarkan teks utama dengan tahun */
+            gap: 8px; /* Jarak antara teks utama dan tahun */
+            flex-wrap: wrap; /* Memastikan logo juga bisa wrap jika terlalu panjang */
+        }
+
+        /* Dihapus: Aturan logo::after yang menyebabkan tumpang tindih */
+
+        /* Baru: Aturan untuk styling tahun agar tetap aman dalam alur dokumen */
+        .logo-year {
+            font-size: 16px;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+            font-weight: 700;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--dark-border);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: var(--card-header);
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            color: var(--neon-blue);
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        textarea, input[type="text"], input[type="password"], input[type="file"], select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(30, 30, 74, 0.5);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus, input[type="text"]:focus, input[type="password"]:focus, select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(57, 255, 20, 0.15);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(57, 255, 20, 0.25);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .preview-container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            border: 2px dashed var(--dark-border);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+            padding: 10px; /* Tambahan padding */
+        }
+        
+        .preview-container.error {
+            border-color: #ff5e00;
+            color: #ff5e00;
+        }
+        
+        .preview-container.error .preview-placeholder {
+            text-align: left;
+        }
+        
+        .preview-container.error a {
+            color: var(--neon-blue);
+        }
+
+        .preview-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .preview-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        .preview-placeholder i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: var(--dark-border);
+        }
+
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .recommendation-item {
+            background: rgba(30, 30, 74, 0.5);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--neon-blue);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .api-key-wrapper {
+            padding: 15px;
+            background: rgba(30, 30, 74, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--neon-blue);
+            margin-bottom: 15px; /* Menambahkan margin agar tidak terlalu rapat */
+        }
+        
+        .api-key-wrapper:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .note-box {
+            background: rgba(189, 0, 255, 0.1);
+            border: 1px solid var(--neon-purple);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* --- Media Queries untuk Responsivitas --- */
+
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 24px; /* Kecilkan font logo di mobile */
+                justify-content: center; /* Pusatkan logo di mobile */
+            }
+            
+            header {
+                justify-content: center; /* Pusatkan seluruh header */
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .btn-group {
+                justify-content: center; /* Pusatkan grup tombol */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Perubahan: '2025' dimasukkan ke dalam span agar tidak tumpang tindih -->
+            <h1 class="logo">
+                XFIVE AI
+                <span class="logo-year">2025</span>
+            </h1>
+        </header>
+
+        <div class="main-grid">
+            <div class="left-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h2 class="card-title">Konfigurasi Prompt</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Pilih Model AI</label>
+                            <select id="model-select">
+                                <option value="gemini" selected>Gemini AI</option>
+                                <option value="chatgpt">ChatGPT AI (DALL-E)</option>
+                                <option value="flux">Flux AI</option>
+                                <option value="cloude">Cloude AI</option>
+                                <option value="deepseek">Deepseek AI</option>
+                            </select>
+                        </div>
+
+                        <div id="gemini-api-container" class="api-key-wrapper">
+                             <div class="form-group">
+                                 <label>Gemini API Key</label>
+                                 <input type="password" id="gemini-api-key" placeholder="Masukkan Kunci API Gemini Anda di sini">
+                             </div>
+                        </div>
+                        
+                        <div id="chatgpt-api-container" class="api-key-wrapper" style="display: none;">
+                             <div class="form-group">
+                                 <label>OpenAI (ChatGPT) API Key</label>
+                                 <input type="password" id="chatgpt-api-key" placeholder="Masukkan Kunci API OpenAI Anda di sini">
+                             </div>
+                        </div>
+                        
+                        <div id="flux-api-container" class="api-key-wrapper" style="display: none;">
+                             <div class="form-group">
+                                 <label>Flux AI API Key</label>
+                                 <input type="password" id="flux-api-key" placeholder="Masukkan Kunci API Flux AI Anda di sini">
+                             </div>
+                        </div>
+
+                        <div id="cloude-api-container" class="api-key-wrapper" style="display: none;">
+                             <div class="form-group">
+                                 <label>Cloude AI API Key</label>
+                                 <input type="password" id="cloude-api-key" placeholder="Masukkan Kunci API Cloude AI Anda di sini">
+                             </div>
+                        </div>
+
+                        <div id="deepseek-api-container" class="api-key-wrapper" style="display: none;">
+                             <div class="form-group">
+                                 <label>Deepseek AI API Key</label>
+                                 <input type="password" id="deepseek-api-key" placeholder="Masukkan Kunci API Deepseek AI Anda di sini">
+                             </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Prompt Positif</label>
+                            <textarea id="positive-prompt" placeholder="Jelaskan gambar yang ingin Anda hasilkan...">Seorang hacker cyberpunk dengan jaket neon dan koneksi neural, berdiri di atas gedung pencakar langit dengan kota futuristik di latar belakang, malam hari dengan hujan, lampu neon, suasana cyberpunk 2025</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prompt Negatif</label>
+                            <textarea id="negative-prompt" placeholder="Jelaskan apa yang tidak ingin Anda lihat dalam gambar...">wajah blur, cacat, hasil jelek, rendah, kualitas rendah, gambar buram, distorsi, tekstur aneh, mata aneh, badan aneh, kaki aneh, tangan aneh</textarea>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-primary" id="generate-btn"><i class="fas fa-magic"></i> Generate Image</button>
+                            <button class="btn btn-secondary" id="randomize-btn"><i class="fas fa-sync-alt"></i> Randomize Prompt</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-image"></i>
+                        <h2 class="card-title">Referensi Karakter</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Unggah Gambar Referensi (Opsional, hanya untuk Gemini)</label>
+                            <input type="file" id="image-upload" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-paint-brush"></i>
+                        <h2 class="card-title">Preview Hasil</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="preview-container" id="preview-container">
+                            <div class="preview-placeholder" id="preview-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Gambar akan muncul di sini setelah proses generate</p>
+                            </div>
+                        </div>
+                        <div class="btn-group" style="margin-top: 20px;">
+                            <a class="btn btn-secondary" id="download-btn" style="display: none;"><i class="fas fa-download"></i> Download</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                     <div class="card-header">
+                         <i class="fas fa-lightbulb"></i>
+                         <h2 class="card-title">Rekomendasi Prompt</h2>
+                     </div>
+                     <div class="card-body">
+                         <p>Klik item di bawah untuk menambahkannya ke prompt positif Anda.</p>
+                         <div class="recommendation-grid">
+                             <div class="recommendation-item">Cyberpunk cityscape at night with neon lights and rain</div>
+                             <div class="recommendation-item">Futuristic hacker with neural interface</div>
+                             <div class="recommendation-item">Flying cars and holographic advertisements</div>
+                             <div class="recommendation-item">Cyborg with mechanical limbs and LED illumination</div>
+                             <div class="recommendation-item">Rain-soaked streets reflecting neon signs</div>
+                         </div>
+                     </div>
+                 </div>
+
+                <div class="note-box">
+                    <h3 class="neon-text"><i class="fas fa-exclamation-circle"></i> Catatan Penting</h3>
+                    <p>Generator prompt ini adalah aset milik XFIVE COMMUNITY, dibuat eksklusif untuk kebutuhan produksi image berbasis AI kami. Mohon tidak dibagikan atau diperjualbelikan di luar lingkup XFIVE COMMUNITY.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>XFIVE AI &copy; 2025 - Generator Gambar AI Modern</p>
+            <p>Dibuat untuk para Prompt Engineer masa depan | XFIVE COMMUNITY</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript Anda tidak diubah karena sudah berfungsi dengan baik.
+        const generateBtn = document.getElementById('generate-btn');
+        const randomizeBtn = document.getElementById('randomize-btn');
+        const positivePromptEl = document.getElementById('positive-prompt');
+        const negativePromptEl = document.getElementById('negative-prompt');
+        const imageUploadEl = document.getElementById('image-upload');
+        const previewContainer = document.getElementById('preview-container');
+        const downloadBtn = document.getElementById('download-btn');
+        
+        const modelSelect = document.getElementById('model-select');
+        const allApiContainers = document.querySelectorAll('.api-key-wrapper');
+
+        modelSelect.addEventListener('change', () => {
+            allApiContainers.forEach(container => container.style.display = 'none');
+            const selectedContainer = document.getElementById(`${modelSelect.value}-api-container`);
+            if (selectedContainer) {
+                selectedContainer.style.display = 'block';
+            }
+        });
+        
+        const fileToBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+        });
+
+        const showMessage = (message, isError = false) => {
+            previewContainer.innerHTML = `<div class="preview-placeholder">${message}</div>`;
+            previewContainer.classList.toggle('error', isError);
+        };
+        
+        async function fetchWithRetry(url, options, retries = 5, initialDelay = 3000) {
+            let delay = initialDelay;
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.status === 429) {
+                        console.log(`Rate limit hit. Retrying in ${delay}ms...`);
+                        throw new Error('Rate limit exceeded');
+                    }
+                    return response;
+                } catch (error) {
+                    if (i === retries - 1) throw error; 
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; 
+                }
+            }
+        }
+
+        async function handleGeminiGeneration() {
+            const apiKey = document.getElementById('gemini-api-key').value;
+            if (!apiKey) {
+                throw new Error("Kunci API Gemini Diperlukan");
+            }
+            const referenceImageFile = imageUploadEl.files[0];
+            let fullPrompt = positivePromptEl.value;
+            if (negativePromptEl.value) {
+                fullPrompt += `. Hindari hal berikut: ${negativePromptEl.value}`;
+            }
+
+            const payload = {
+                contents: [{ parts: [{ text: fullPrompt }] }],
+                generationConfig: { responseModalities: ['IMAGE'] },
+            };
+            
+            if (referenceImageFile) {
+                showMessage('<p>Mengonversi gambar referensi...</p>');
+                const base64Data = await fileToBase64(referenceImageFile);
+                payload.contents[0].parts.push({
+                    inlineData: { mimeType: referenceImageFile.type, data: base64Data }
+                });
+            }
+            
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+            const fetchOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            showMessage('<p>Mengirim permintaan ke Gemini AI...</p>');
+            const response = await fetchWithRetry(apiUrl, fetchOptions);
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            const imagePart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+            
+            if (imagePart && imagePart.inlineData.data) {
+                return `data:${imagePart.inlineData.mimeType || 'image/png'};base64,${imagePart.inlineData.data}`;
+            } else {
+                 throw new Error("Respons dari API Gemini tidak valid atau tidak berisi gambar.");
+            }
+        }
+
+        async function handleChatGPTGeneration() {
+            const apiKey = document.getElementById('chatgpt-api-key').value;
+             if (!apiKey) {
+                throw new Error("Kunci API OpenAI Diperlukan");
+            }
+            if (imageUploadEl.files[0]) {
+                 showMessage('<h3>Peringatan</h3><p>Model DALL-E tidak mendukung gambar referensi pada mode ini. Gambar referensi akan diabaikan.</p>', true);
+                 await new Promise(res => setTimeout(res, 2500));
+            }
+
+            let fullPrompt = positivePromptEl.value;
+            if (negativePromptEl.value) {
+                fullPrompt += `. Negative prompt: ${negativePromptEl.value}`;
+            }
+
+            const payload = {
+                prompt: fullPrompt,
+                n: 1,
+                size: "1024x1024",
+                model: "dall-e-3"
+            };
+
+            const apiUrl = 'https://api.openai.com/v1/images/generations';
+            const fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(payload)
+            };
+
+            showMessage('<p>Mengirim permintaan ke DALL-E...</p>');
+            const response = await fetchWithRetry(apiUrl, fetchOptions);
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            if (result.data && result.data[0].url) {
+                return result.data[0].url;
+            } else {
+                throw new Error("Respons dari API OpenAI tidak valid atau tidak berisi gambar.");
+            }
+        }
+
+        async function handleFluxGeneration() {
+            throw new Error("Integrasi Flux AI belum tersedia saat ini.");
+        }
+
+        async function handleCloudeGeneration() {
+            throw new Error("Model gambar Cloude AI tidak tersedia untuk umum atau belum diintegrasikan.");
+        }
+
+        async function handleDeepseekGeneration() {
+            throw new Error("Integrasi Deepseek AI belum tersedia saat ini.");
+        }
+
+
+        generateBtn.addEventListener('click', async () => {
+            const positivePrompt = positivePromptEl.value;
+            const selectedModel = modelSelect.value;
+            
+            if (!positivePrompt) {
+                showMessage('<h3>Prompt Diperlukan</h3><p>Silakan masukkan prompt positif untuk menjelaskan gambar yang Anda inginkan.</p>', true);
+                return;
+            }
+            
+            const originalBtnText = generateBtn.innerHTML;
+            generateBtn.innerHTML = '<span class="loading"></span> Generating...';
+            generateBtn.disabled = true;
+            randomizeBtn.disabled = true;
+            downloadBtn.style.display = 'none';
+            showMessage('<p>Menghubungi server AI, mohon tunggu...</p>');
+
+            try {
+                let imageUrl;
+                switch (selectedModel) {
+                    case 'gemini':
+                        imageUrl = await handleGeminiGeneration();
+                        break;
+                    case 'chatgpt':
+                        imageUrl = await handleChatGPTGeneration();
+                        break;
+                    case 'flux':
+                        imageUrl = await handleFluxGeneration();
+                        break;
+                    case 'cloude':
+                        imageUrl = await handleCloudeGeneration();
+                        break;
+                    case 'deepseek':
+                        imageUrl = await handleDeepseekGeneration();
+                        break;
+                    default:
+                        throw new Error("Model AI tidak dikenal.");
+                }
+
+                previewContainer.innerHTML = `<img src="${imageUrl}" alt="Generated Image">`;
+                downloadBtn.href = imageUrl;
+                downloadBtn.download = `cybernexus-${Date.now()}.png`;
+                downloadBtn.style.display = 'inline-flex';
+
+            } catch (error) {
+                console.error("Error generating image:", error);
+                
+                let errorTitle = 'Gagal Menghasilkan Gambar!';
+                let errorDetails = `Pesan dari server: ${error.message}`;
+                let errorSolutions = `
+                    <p style="margin-top:10px;"><b>Kemungkinan Penyebab & Solusi:</b></p>
+                    <ul style="list-style-position: inside;">
+                        <li><b>Kunci API Salah:</b> Pastikan tidak ada salah ketik pada API Key Anda.</li>
+                        <li><b>Melebihi Kuota:</b> Anda mungkin telah mencapai batas penggunaan gratis.</li>
+                        <li><b>Integrasi Belum Siap:</b> Model AI yang Anda pilih mungkin belum didukung sepenuhnya.</li>
+                    </ul>`;
+
+                const lowerCaseError = error.message?.toLowerCase();
+
+                if (lowerCaseError.includes('api key not valid') || lowerCaseError.includes('incorrect api key')) {
+                    errorTitle = "Kunci API Tidak Valid!";
+                    errorDetails = `Pastikan Anda telah memasukkan Kunci API yang benar untuk model yang dipilih.`;
+                    errorSolutions = `<p style="margin-top:10px;">Silakan periksa kembali Kunci API Anda.</p>`;
+                } else if (lowerCaseError.includes('quota')) {
+                    errorTitle = "Kuota Penggunaan Terlampaui!";
+                    errorDetails = "Anda telah melebihi kuota gratis yang disediakan oleh penyedia API.";
+                    errorSolutions = `<p style="margin-top:10px;">Anda dapat menunggu kuota di-reset atau meng-upgrade paket Anda. Kunjungi dokumentasi API yang bersangkutan untuk info lebih lanjut.</p>`;
+                } else if (lowerCaseError.includes('rate limit exceeded')) {
+                    errorTitle = "Terlalu Banyak Permintaan!";
+                    errorDetails = 'Tombol dinonaktifkan sementara selama 30 detik untuk menunggu server siap.';
+                    errorSolutions = '<p style="margin-top:10px;">Mohon tunggu sejenak sebelum mencoba lagi.</p>';
+                    setTimeout(() => {
+                        generateBtn.innerHTML = originalBtnText;
+                        generateBtn.disabled = false;
+                        randomizeBtn.disabled = false;
+                        showMessage('<p>Anda dapat mencoba untuk membuat gambar lagi sekarang.</p>');
+                    }, 30000); 
+                }
+                
+                if (!lowerCaseError.includes('rate limit exceeded')) {
+                    generateBtn.innerHTML = originalBtnText;
+                    generateBtn.disabled = false;
+                    randomizeBtn.disabled = false;
+                }
+                
+                const fullErrorMessage = `<h3>${errorTitle}</h3><p>${errorDetails}</p><hr style="margin: 10px 0; border-color: var(--dark-border);">${errorSolutions}`;
+                showMessage(fullErrorMessage, true);
+            }
+        });
+
+        randomizeBtn.addEventListener('click', () => {
+            const prompts = [
+                "Sebuah kota futuristik dengan pencakar langit yang menjulang tinggi, lampu neon menyala-nyala, hujan turun membasahi jalanan, suasana cyberpunk",
+                "Seorang cyborg dengan augmentasi mekanik yang rumit, berdiri di atap gedung dengan latar belakang kota yang terang benderang",
+                "Pemandangan jalan cyberpunk dengan toko-toko neon, orang-orang dengan fashion futuristik, dan kendaraan terbang melintas di udara",
+                "Interior ruang kontrol futuristik dengan layar holografik, panel kontrol bercahaya, dan teknologi canggih di mana-mana",
+                "Seorang hacker dengan koneksi neural interface, duduk di depan komputer dengan kode hijau bergerak di layar"
+            ];
+            const negativePrompts = [
+                "wajah blur, cacat, hasil jelek, kualitas rendah, gambar buram, distorsi",
+                "tangan aneh, kaki aneh, mata aneh, proporsi tubuh tidak wajar, artefak kompresi",
+                "gambar pecah, warna tidak natural, pencahayaan buruk, detail hilang",
+                "tulisan watermark, signature artist, teks yang tidak diinginkan",
+                "konten dewasa, kekerasan, unsur tidak pantas, NSFW"
+            ];
+            
+            const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+            const randomNegativePrompt = negativePrompts[Math.floor(Math.random() * negativePrompts.length)];
+            
+            positivePromptEl.value = randomPrompt;
+            negativePromptEl.value = randomNegativePrompt;
+        });
+
+        document.querySelectorAll('.recommendation-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const currentPrompt = positivePromptEl.value;
+                if (currentPrompt && !currentPrompt.endsWith(' ')) {
+                    positivePromptEl.value = currentPrompt + ", " + item.textContent;
+                } else {
+                    positivePromptEl.value = (currentPrompt || '') + item.textContent;
+                }
+                positivePromptEl.focus();
+            });
+        });
+    </script>
+</body>
+</html>
